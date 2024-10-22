@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Managing Assistants MIT Mark 1</title>
+    <title>Tom's Tools</title>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -10,6 +10,7 @@
       crossorigin="anonymous"
     />
     <style>
+      /* Dark Mode Styles */
       body {
         background-color: #121212;
         color: #ffffff;
@@ -69,6 +70,10 @@
         number1: '',
         number2: '',
         operator: '',
+        query: '',
+        value: '',
+        fromUnit: '',
+        toUnit: '',
       };
 
       async function get_data_from_elements() {
@@ -140,13 +145,23 @@
         const operation = document.getElementById('operation').value;
         const userMessageDiv = document.getElementById('userMessageDiv');
         const mathInputsDiv = document.getElementById('mathInputsDiv');
+        const campusQueryDiv = document.getElementById('campusQueryDiv');
+        const unitConversionDiv = document.getElementById('unitConversionDiv');
 
-        if (operation === 'doMath') {
-          userMessageDiv.style.display = 'none';
-          mathInputsDiv.style.display = 'block';
-        } else {
+        // Hide all input divs
+        userMessageDiv.style.display = 'none';
+        mathInputsDiv.style.display = 'none';
+        campusQueryDiv.style.display = 'none';
+        unitConversionDiv.style.display = 'none';
+
+        if (operation === 'manageNotes') {
           userMessageDiv.style.display = 'block';
-          mathInputsDiv.style.display = 'none';
+        } else if (operation === 'doMath') {
+          mathInputsDiv.style.display = 'block';
+        } else if (operation === 'campusDirectory') {
+          campusQueryDiv.style.display = 'block';
+        } else if (operation === 'unitConversion') {
+          unitConversionDiv.style.display = 'block';
         }
       }
 
@@ -154,9 +169,17 @@
         get_data_from_elements();
 
         let route = action;
+        const operation = document.getElementById('operation').value;
 
-        if (document.getElementById('operation').value === 'doMath') {
+        if (operation === 'doMath') {
           state.user_message = `Please calculate ${state.number1} ${state.operator} ${state.number2}.`;
+        } else if (operation === 'campusDirectory') {
+          state.user_message = `Please search for ${state.query} in the campus directory.`;
+        } else if (operation === 'unitConversion') {
+          state.user_message = `Please convert ${state.value} ${state.fromUnit} to ${state.toUnit}.`;
+        } else if (operation === 'manageNotes') {
+          // Use the user's message directly
+          state.user_message = document.getElementById('user_message').value;
         }
 
         console.log(`sending data: ${JSON.stringify(state)} to ${route}`);
@@ -183,7 +206,7 @@
       }
     </script>
   </head>
-  <body>
+  <body onload="updateUI()">
     <div class="card">
       <div class="card-body">
         <section class="part2">
@@ -200,7 +223,7 @@
                 />
               </div>
               <div class="col">
-                <h4 class="left-side-text">Tom's Super Machine</h4>
+                <h4 class="left-side-text">Tom's Tools</h4>
               </div>
             </div>
           </div>
@@ -213,6 +236,8 @@
               <select id="operation" class="form-select" onchange="updateUI()">
                 <option value="manageNotes">Manage Notes</option>
                 <option value="doMath">Do Math</option>
+                <option value="campusDirectory">Campus Directory</option>
+                <option value="unitConversion">Unit Conversion</option>
               </select>
             </div>
           </div>
@@ -234,6 +259,7 @@
 
           <!-- Math Inputs -->
           <div class="row mb-3" id="mathInputsDiv" style="display: none;">
+            <!-- Number 1 -->
             <div class="col">
               <label for="number1">Number 1:</label>
               <input
@@ -245,6 +271,7 @@
                 placeholder="Enter the first number"
               />
             </div>
+            <!-- Operator -->
             <div class="col">
               <label for="operator">Operator:</label>
               <select id="operator" name="operator" class="form-select">
@@ -255,6 +282,7 @@
                 <option value="^">^ (Exponent)</option>
               </select>
             </div>
+            <!-- Number 2 -->
             <div class="col">
               <label for="number2">Number 2:</label>
               <input
@@ -265,6 +293,60 @@
                 class="form-control"
                 placeholder="Enter the second number"
               />
+            </div>
+          </div>
+
+          <!-- Campus Directory Input -->
+          <div class="row mb-3" id="campusQueryDiv" style="display: none;">
+            <div class="col">
+              <label for="query">Campus Query:</label>
+              <input
+                type="text"
+                id="query"
+                name="query"
+                value=""
+                class="form-control"
+                placeholder="Enter subject or building to search"
+              />
+            </div>
+          </div>
+
+          <!-- Unit Conversion Inputs -->
+          <div class="row mb-3" id="unitConversionDiv" style="display: none;">
+            <div class="col">
+              <label for="value">Value:</label>
+              <input
+                type="number"
+                id="value"
+                name="value"
+                value=""
+                class="form-control"
+                placeholder="Enter the value to convert"
+              />
+            </div>
+            <div class="col">
+              <label for="fromUnit">From Unit:</label>
+              <select id="fromUnit" name="fromUnit" class="form-select">
+                <option value="meters">Meters</option>
+                <option value="feet">Feet</option>
+                <option value="kilometers">Kilometers</option>
+                <option value="miles">Miles</option>
+                <option value="celsius">Celsius</option>
+                <option value="fahrenheit">Fahrenheit</option>
+                <!-- Add more units as needed -->
+              </select>
+            </div>
+            <div class="col">
+              <label for="toUnit">To Unit:</label>
+              <select id="toUnit" name="toUnit" class="form-select">
+                <option value="meters">Meters</option>
+                <option value="feet">Feet</option>
+                <option value="kilometers">Kilometers</option>
+                <option value="miles">Miles</option>
+                <option value="celsius">Celsius</option>
+                <option value="fahrenheit">Fahrenheit</option>
+                <!-- Add more units as needed -->
+              </select>
             </div>
           </div>
 

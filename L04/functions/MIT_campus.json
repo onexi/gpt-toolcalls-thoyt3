@@ -1,0 +1,248 @@
+{
+    "subjects": [
+      {
+        "subject": "Aeronautics and Astronautics (Course 16)",
+        "building": "37"
+      },
+      {
+        "subject": "Aerospace Studies (AS)",
+        "building": "E40"
+      },
+      {
+        "subject": "Anthropology (Course 21A)",
+        "building": "16"
+      },
+      {
+        "subject": "Architecture (Course 4)",
+        "building": "7"
+      },
+      {
+        "subject": "Biological Engineering (Course 20)",
+        "building": "16"
+      },
+      {
+        "subject": "Biology (Course 7)",
+        "building": "68"
+      },
+      {
+        "subject": "Brain and Cognitive Sciences (Course 9)",
+        "building": "46"
+      },
+      {
+        "subject": "Chemical Engineering (Course 10)",
+        "building": "66"
+      },
+      {
+        "subject": "Chemistry (Course 5)",
+        "building": "18"
+      },
+      {
+        "subject": "Civil and Environmental Engineering (Course 1)",
+        "building": "1"
+      },
+      {
+        "subject": "Comparative Media Studies / Writing (CMS)",
+        "building": "14"
+      },
+      {
+        "subject": "Comparative Media Studies / Writing (Course 21W)",
+        "building": "14"
+      },
+      {
+        "subject": "Computational and Systems Biology (CSB)",
+        "building": "68"
+      },
+      {
+        "subject": "Computational Science and Engineering (CSE)",
+        "building": "32"
+      },
+      {
+        "subject": "Concourse (CC)",
+        "building": "16"
+      },
+      {
+        "subject": "Data, Systems, and Society (IDS)",
+        "building": "E18"
+      },
+      {
+        "subject": "Earth, Atmospheric, and Planetary Sciences (Course 12)",
+        "building": "54"
+      },
+      {
+        "subject": "Economics (Course 14)",
+        "building": "E52"
+      },
+      {
+        "subject": "Edgerton Center (EC)",
+        "building": "44"
+      },
+      {
+        "subject": "Electrical Engineering and Computer Science (Course 6)",
+        "building": "36"
+      },
+      {
+        "subject": "Engineering Management (EM)",
+        "building": "E40"
+      },
+      {
+        "subject": "Experimental Study Group (ES)",
+        "building": "24"
+      },
+      {
+        "subject": "Global Languages (Course 21G)",
+        "building": "14"
+      },
+      {
+        "subject": "Health Sciences and Technology (HST)",
+        "building": "E25"
+      },
+      {
+        "subject": "History (Course 21H)",
+        "building": "E51"
+      },
+      {
+        "subject": "Humanities (Course 21)",
+        "building": "14"
+      },
+      {
+        "subject": "Linguistics and Philosophy (Course 24)",
+        "building": "32"
+      },
+      {
+        "subject": "Literature (Course 21L)",
+        "building": "14"
+      },
+      {
+        "subject": "Management (Course 15)",
+        "building": "E62"
+      },
+      {
+        "subject": "Materials Science and Engineering (Course 3)",
+        "building": "13"
+      },
+      {
+        "subject": "Mathematics (Course 18)",
+        "building": "2"
+      },
+      {
+        "subject": "Mechanical Engineering (Course 2)",
+        "building": "3"
+      },
+      {
+        "subject": "Media Arts and Sciences (MAS)",
+        "building": "E14"
+      },
+      {
+        "subject": "Military Science (MS)",
+        "building": "W59"
+      },
+      {
+        "subject": "Music (Course 21M)",
+        "building": "14"
+      },
+      {
+        "subject": "Naval Science (NS)",
+        "building": "W59"
+      },
+      {
+        "subject": "Nuclear Science and Engineering (Course 22)",
+        "building": "24"
+      },
+      {
+        "subject": "Physics (Course 8)",
+        "building": "6"
+      },
+      {
+        "subject": "Political Science (Course 17)",
+        "building": "E53"
+      },
+      {
+        "subject": "Science, Technology, and Society (STS)",
+        "building": "E51"
+      },
+      {
+        "subject": "Special Programs",
+        "building": "W31"
+      },
+      {
+        "subject": "Supply Chain Management (SCM)",
+        "building": "E40"
+      },
+      {
+        "subject": "Theater Arts (21T)",
+        "building": "W97"
+      },
+      {
+        "subject": "Urban Studies and Planning (Course 11)",
+        "building": "9"
+      },
+      {
+        "subject": "Women's and Gender Studies (WGS)",
+        "building": "14"
+      }
+    ],
+    "buildings": {
+      "1": "Civil and Environmental Engineering",
+      "2": "Mathematics",
+      "3": "Mechanical Engineering",
+      "6": "Physics",
+      "7": "Architecture",
+      "9": "Urban Studies and Planning",
+      "13": "Materials Science and Engineering",
+      "14": [
+        "Global Languages",
+        "Comparative Media Studies / Writing",
+        "Humanities",
+        "Literature",
+        "Music",
+        "Women's and Gender Studies"
+      ],
+      "16": [
+        "Aeronautics and Astronautics",
+        "Anthropology",
+        "Biological Engineering",
+        "Concourse"
+      ],
+      "18": "Chemistry",
+      "24": [
+        "Nuclear Science and Engineering",
+        "Experimental Study Group"
+      ],
+      "32": [
+        "Linguistics and Philosophy",
+        "Computational Science and Engineering"
+      ],
+      "36": "Electrical Engineering and Computer Science",
+      "37": "Aeronautics and Astronautics",
+      "44": "Edgerton Center",
+      "46": "Brain and Cognitive Sciences",
+      "54": "Earth, Atmospheric, and Planetary Sciences",
+      "66": "Chemical Engineering",
+      "68": [
+        "Biology",
+        "Computational and Systems Biology"
+      ],
+      "E14": "Media Arts and Sciences",
+      "E18": "Data, Systems, and Society",
+      "E25": "Health Sciences and Technology",
+      "E40": [
+        "Aerospace Studies",
+        "Engineering Management",
+        "Supply Chain Management"
+      ],
+      "E51": [
+        "History",
+        "Science, Technology, and Society"
+      ],
+      "E52": "Economics",
+      "E53": "Political Science",
+      "E62": "Management",
+      "W31": "Special Programs",
+      "W59": [
+        "Military Science",
+        "Naval Science"
+      ],
+      "W97": "Theater Arts"
+    }
+  }
+  

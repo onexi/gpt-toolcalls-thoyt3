@@ -12,22 +12,26 @@ const notesFilePath = path.join(__dirname, 'notes.json');
 
 function readNotes() {
   if (!fs.existsSync(notesFilePath)) {
-    return {};
+    return [];
   }
   const data = fs.readFileSync(notesFilePath, 'utf8');
   if (data.trim() === '') {
-    // Handle empty file
-    return {};
+    return [];
   }
   try {
-    return JSON.parse(data);
+    const parsedData = JSON.parse(data);
+    if (Array.isArray(parsedData)) {
+      return parsedData;
+    } else if (parsedData && typeof parsedData === 'object') {
+      // Wrap the object in an array
+      return [parsedData];
+    } else {
+      console.error('notes.json content is invalid. Resetting to empty array.');
+      return [];
+    }
   } catch (error) {
     console.error('Error parsing notes.json:', error);
-    // Optionally, you can back up the corrupted file
-    // fs.renameSync(notesFilePath, notesFilePath + '.backup');
-    // Or reset the file
-    // fs.writeFileSync(notesFilePath, '{}', 'utf8');
-    return {};
+    return [];
   }
 }
 
@@ -38,10 +42,15 @@ function writeNotes(notes) {
 const execute = async (title, content) => {
   try {
     const notes = readNotes();
-    notes[title] = content;
+
+    // Add the new note to the array
+    notes.push({ title: title, content: content });
+
+    // Write back to notes.json
     writeNotes(notes);
-    console.log(`Note "${title}" stored successfully.`);
-    return { status: 'success', message: `Note "${title}" stored successfully.` };
+
+    console.log(`Stored note titled "${title}".`);
+    return { status: 'success', message: `Note titled "${title}" has been stored.` };
   } catch (error) {
     console.error('Error storing note:', error);
     return { status: 'error', message: 'Failed to store note.' };

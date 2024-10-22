@@ -1,7 +1,22 @@
-{
-  "budget": "foundation, framing, and roof",
-  "nuisances": "Ben, Braden, Tom",
-  "DeNeuff": "Ranger, Crew, Badass",
-  "Famous Bills": "Clinton, Dollar, Buffalo",
-  "favorite burgers": "cheese, ham, impossible"
-}
+[
+  {
+    "budget": "foundation, framing, and roof",
+    "nuisances": "Ben, Braden, Tom",
+    "DeNeuff": "Ranger, Crew, Badass",
+    "Famous Bills": "Clinton, Dollar, Buffalo",
+    "favorite burgers": "cheese, ham, impossible",
+    "Best Classes": "1.125, 1.125, 1.125"
+  },
+  {
+    "title": "Building 1",
+    "content": "Building 1: Civil and Environmental Engineering"
+  },
+  {
+    "title": "Chemical Engineering (Course 10)",
+    "content": "Subject: Chemical Engineering (Course 10), Building: 66"
+  },
+  {
+    "title": "Nuclear Science and Engineering (Course 22)",
+    "content": "Subject: Nuclear Science and Engineering (Course 22), Building: 24"
+  }
+]

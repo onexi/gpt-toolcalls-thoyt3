@@ -46,19 +46,20 @@ let messages = [
   {
     role: 'system',
     content:
-      'You are an assistant that helps manage notes and perform mathematical calculations. You can store notes, retrieve them, list all notes, and perform operations like addition, subtraction, multiplication, division, and exponentiation on two numbers. Use the provided functions (storeNote, getNote, listNotes, calculate) to perform these tasks.',
+      'You are an assistant that helps manage notes, perform mathematical calculations, search the MIT campus directory, and perform unit conversions. You can store notes, retrieve them, list all notes, perform operations like addition, subtraction, multiplication, division, and exponentiation on two numbers, search for MIT subjects or buildings, and convert units. Use the provided functions (storeNote, getNote, listNotes, calculate, searchCampusDirectory, convertUnits) to perform these tasks. After executing a function, provide the user with a clear and informative response based on the function\'s result.',
   },
 ];
 
-
-// Function to dynamically import all functions, excluding scratchpad.js
+// Function to dynamically import all functions, excluding specified files
 async function getFunctions() {
   const functionsDir = path.join(__dirname, 'functions');
   const files = fs.readdirSync(functionsDir);
   const functions = {};
 
+  const excludeFiles = ['scratchpad.js'];
+
   for (const file of files) {
-    if (file.endsWith('.js') && file !== 'scratchpad.js') {
+    if (file.endsWith('.js') && !excludeFiles.includes(file)) {
       const modulePath = path.join(functionsDir, file);
       const moduleUrl = pathToFileURL(modulePath).href;
       const { execute, details } = await import(moduleUrl);
