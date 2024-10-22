@@ -55,17 +55,20 @@
     <script>
       let state = {
         chatgpt: false,
-        assistant_id: "",
-        assistant_name: "",
-        dir_path: "",
-        news_path: "",
-        thread_id: "",
-        user_message: "",
-        run_id: "",
-        run_status: "",
-        vector_store_id: "",
+        assistant_id: '',
+        assistant_name: '',
+        dir_path: '',
+        news_path: '',
+        thread_id: '',
+        user_message: '',
+        run_id: '',
+        run_status: '',
+        vector_store_id: '',
         tools: [],
         parameters: [],
+        number1: '',
+        number2: '',
+        operator: '',
       };
 
       async function get_data_from_elements() {
@@ -91,29 +94,29 @@
 
         // Ensure message is an array
         if (!Array.isArray(message)) {
-          let responseDiv = document.getElementById("response");
+          let responseDiv = document.getElementById('response');
           responseDiv.innerHTML = JSON.stringify(message);
           return;
         }
 
         // Select the target div
-        let responseDiv = document.getElementById("response");
+        let responseDiv = document.getElementById('response');
         if (!responseDiv) {
           console.error("No div with id 'response' found.");
           return;
         }
 
         // Clear previous contents
-        responseDiv.innerHTML = "";
+        responseDiv.innerHTML = '';
 
         // Iterate through each object in the array
         message.forEach((item) => {
           // Create a new span element for each item
-          var span = document.createElement("span");
+          var span = document.createElement('span');
 
-          if ("content" in item) {
+          if ('content' in item) {
             span.textContent = `${item.role.toUpperCase()}: ${item.content}`;
-          } else if ("function_call" in item) {
+          } else if ('function_call' in item) {
             span.textContent = `Function Call: ${JSON.stringify(item.function_call)}`;
           } else {
             span.textContent = JSON.stringify(item);
@@ -126,8 +129,25 @@
 
           // Append the span to the div
           responseDiv.appendChild(span);
-          responseDiv.appendChild(document.createElement("br")); // Add a line break for readability
+          responseDiv.appendChild(document.createElement('br')); // Add a line break for readability
         });
+
+        // Scroll to the bottom
+        responseDiv.scrollTop = responseDiv.scrollHeight;
+      }
+
+      function updateUI() {
+        const operation = document.getElementById('operation').value;
+        const userMessageDiv = document.getElementById('userMessageDiv');
+        const mathInputsDiv = document.getElementById('mathInputsDiv');
+
+        if (operation === 'doMath') {
+          userMessageDiv.style.display = 'none';
+          mathInputsDiv.style.display = 'block';
+        } else {
+          userMessageDiv.style.display = 'block';
+          mathInputsDiv.style.display = 'none';
+        }
       }
 
       async function sendRequest(action) {
@@ -135,14 +155,18 @@
 
         let route = action;
 
+        if (document.getElementById('operation').value === 'doMath') {
+          state.user_message = `Please calculate ${state.number1} ${state.operator} ${state.number2}.`;
+        }
+
         console.log(`sending data: ${JSON.stringify(state)} to ${route}`);
         let response = await fetch(`/${route}`, {
-          method: "POST",
+          method: 'POST',
           headers: {
-            "Content-Type": "application/json",
+            'Content-Type': 'application/json',
           },
           body: JSON.stringify(state),
-          mode: "cors",
+          mode: 'cors',
         });
         let res = await response.json(); // we always get back {message, state}
         console.log(`In UI response: ${JSON.stringify(res)}`);
@@ -185,6 +209,17 @@
         <div id="assistant-buttons">
           <div class="row mb-3">
             <div class="col">
+              <label for="operation">Choose Operation:</label>
+              <select id="operation" class="form-select" onchange="updateUI()">
+                <option value="manageNotes">Manage Notes</option>
+                <option value="doMath">Do Math</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- User Message Input -->
+          <div class="row mb-3" id="userMessageDiv">
+            <div class="col">
               <label for="user_message">Your Message:</label>
               <input
                 type="text"
@@ -195,13 +230,52 @@
                 placeholder="Enter your message here..."
               />
             </div>
+          </div>
+
+          <!-- Math Inputs -->
+          <div class="row mb-3" id="mathInputsDiv" style="display: none;">
+            <div class="col">
+              <label for="number1">Number 1:</label>
+              <input
+                type="number"
+                id="number1"
+                name="number1"
+                value=""
+                class="form-control"
+                placeholder="Enter the first number"
+              />
+            </div>
+            <div class="col">
+              <label for="operator">Operator:</label>
+              <select id="operator" name="operator" class="form-select">
+                <option value="+">+</option>
+                <option value="-">-</option>
+                <option value="×">×</option>
+                <option value="÷">÷</option>
+                <option value="^">^ (Exponent)</option>
+              </select>
+            </div>
+            <div class="col">
+              <label for="number2">Number 2:</label>
+              <input
+                type="number"
+                id="number2"
+                name="number2"
+                value=""
+                class="form-control"
+                placeholder="Enter the second number"
+              />
+            </div>
+          </div>
+
+          <div class="row mb-3">
             <div class="col">
               <button
                 class="btn btn-primary mt-4"
                 type="submit"
                 onclick="sendRequest('api/openai-call')"
               >
-                Send Message
+                Send Request
               </button>
             </div>
           </div>

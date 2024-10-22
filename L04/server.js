@@ -46,9 +46,10 @@ let messages = [
   {
     role: 'system',
     content:
-      'You are an assistant that helps manage notes. You can store notes, retrieve them, and list all notes. Use the provided functions (storeNote, getNote, listNotes) to perform these tasks.',
+      'You are an assistant that helps manage notes and perform mathematical calculations. You can store notes, retrieve them, list all notes, and perform operations like addition, subtraction, multiplication, division, and exponentiation on two numbers. Use the provided functions (storeNote, getNote, listNotes, calculate) to perform these tasks.',
   },
 ];
+
 
 // Function to dynamically import all functions, excluding scratchpad.js
 async function getFunctions() {
